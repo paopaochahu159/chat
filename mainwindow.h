@@ -6,6 +6,10 @@
 #include<QNetworkAccessManager>
 #include<QNetworkReply>
 
+#include<QJsonObject>
+#include<QJsonArray>
+#include<QJsonDocument>
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -21,8 +25,19 @@ public:
     ~MainWindow();
 
 private slots:
+    void on_pushButton_clicked();
+
+private:
+    void xunfeixinghuo(const QString &s);
+    void xunfeiDispose(QNetworkReply* reply);
 
 private:
     Ui::MainWindow *ui;
+
+    QNetworkAccessManager *m;
+
+    QNetworkAccessManager *xunfei;
+    QNetworkRequest xunfeinet;
+    QJsonObject userObject;
 };
 #endif // MAINWINDOW_H

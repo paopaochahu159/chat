@@ -31,6 +31,7 @@ private slots:
 private:
     Ui::Register *ui;
 
+    QNetworkAccessManager *r;
     QNetworkAccessManager *m;
 };
 
