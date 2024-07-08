@@ -27,9 +27,14 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_pushButton_4_clicked();
+
 private:
     void xunfeixinghuo(const QString &s);
     void xunfeiDispose(QNetworkReply* reply);
+
+    void send();
+
 
 private:
     Ui::MainWindow *ui;

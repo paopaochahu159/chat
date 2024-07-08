@@ -7,11 +7,14 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    // ui->listWidget->setTextElideMode(Qt :: ElideNone);
+    ui->listWidget->setWordWrap(true);
+
     xunfei = new QNetworkAccessManager(this);
     connect(xunfei, &QNetworkAccessManager::finished, this, &MainWindow::xunfeiDispose);
     xunfeinet.setUrl(QUrl("https://spark-api-open.xf-yun.com/v1/chat/completions"));
     xunfeinet.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    xunfeinet.setRawHeader("Authorization","");
+    xunfeinet.setRawHeader("Authorization","Bearer ee5240895053f3173d2cea06d4da9e2e:MTM3OTUyNjVjMWNiOTE5ZGVlMDczZDQ5");
 
 
     // 创建初始的消息对象并加入 userObject
@@ -37,7 +40,15 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     QString s = ui->textEdit->toPlainText();
+    QListWidgetItem *item = new QListWidgetItem(s);
+    //Qt::AlignLeft、Qt::AlignCenter 或 Qt::AlignRight
+    item->setTextAlignment(Qt::AlignRight);
+    ui->listWidget->addItem(item);
     xunfeixinghuo(s);
+}
+
+void MainWindow::send(){
+
 }
 
 void MainWindow::xunfeixinghuo(const QString &s){
@@ -59,7 +70,20 @@ void MainWindow::xunfeixinghuo(const QString &s){
 }
 
 void MainWindow::xunfeiDispose(QNetworkReply* reply){
-    QString s = reply->readAll();
-    qDebug() << s;
+    QString all = reply->readAll();
+    QJsonDocument doc = QJsonDocument::fromJson(all.toUtf8());
+    QJsonObject rootObj = doc.object();
+   QJsonObject r =  rootObj.value("choices").toArray()[0].toObject().value("message").toObject();
+
+    QListWidgetItem *item = new QListWidgetItem(r.value("content").toString());
+    //Qt::AlignLeft、Qt::AlignCenter 或 Qt::AlignRight
+    item->setTextAlignment(Qt::AlignLeft);
+    ui->listWidget->addItem(item);
+}
+
+
+void MainWindow::on_pushButton_4_clicked()
+{
+
 }
 
