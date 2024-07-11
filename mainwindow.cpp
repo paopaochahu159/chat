@@ -15,7 +15,7 @@ MainWindow::MainWindow(const QString& myname, QWidget *parent)
     connect(xunfei, &QNetworkAccessManager::finished, this, &MainWindow::xunfeiDispose);
     xunfeinet.setUrl(QUrl("https://spark-api-open.xf-yun.com/v1/chat/completions"));
     xunfeinet.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    xunfeinet.setRawHeader("Authorization","Bearer ee5240895053f3173d2cea06d4da9e2e:MTM3OTUyNjVjMWNiOTE5ZGVlMDczZDQ5");
+    xunfeinet.setRawHeader("Authorization","Bearer 自己的api");
 
     socket = new QTcpSocket(this);
     connect(socket, &QTcpSocket::readyRead, this, &MainWindow::onDataReceived);//接收到数据时触发
