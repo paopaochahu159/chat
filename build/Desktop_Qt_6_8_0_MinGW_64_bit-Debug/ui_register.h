@@ -27,7 +27,7 @@ public:
     QLabel *label;
     QPushButton *pushButton;
     QFrame *frame;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QLineEdit *lineEdit;
     QLineEdit *lineEdit_2;
@@ -39,7 +39,7 @@ public:
     {
         if (Register->objectName().isEmpty())
             Register->setObjectName("Register");
-        Register->resize(396, 419);
+        Register->resize(404, 440);
         Register->setStyleSheet(QString::fromUtf8("#Register{background-image: url(:/img/img/RBackground.png);}"));
         label = new QLabel(Register);
         label->setObjectName("label");
@@ -57,14 +57,14 @@ public:
         frame->setGeometry(QRect(60, 300, 271, 51));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
-        widget = new QWidget(frame);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(10, 10, 251, 31));
-        horizontalLayout = new QHBoxLayout(widget);
+        layoutWidget = new QWidget(frame);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(10, 10, 251, 31));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setSpacing(4);
         horizontalLayout->setObjectName("horizontalLayout");
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        lineEdit = new QLineEdit(widget);
+        lineEdit = new QLineEdit(layoutWidget);
         lineEdit->setObjectName("lineEdit");
         lineEdit->setMaximumSize(QSize(16777215, 20));
         lineEdit->setStyleSheet(QString::fromUtf8("* {\n"
@@ -117,7 +117,7 @@ public:
 
         horizontalLayout->addWidget(lineEdit);
 
-        lineEdit_2 = new QLineEdit(widget);
+        lineEdit_2 = new QLineEdit(layoutWidget);
         lineEdit_2->setObjectName("lineEdit_2");
         lineEdit_2->setMaximumSize(QSize(16777215, 20));
         lineEdit_2->setStyleSheet(QString::fromUtf8("* {\n"
@@ -198,7 +198,7 @@ public:
     void retranslateUi(QDialog *Register)
     {
         Register->setWindowTitle(QCoreApplication::translate("Register", "Dialog", nullptr));
-        label->setText(QCoreApplication::translate("Register", "\346\254\242\350\277\216\347\231\273\345\275\225Chat", nullptr));
+        label->setText(QCoreApplication::translate("Register", "\346\254\242\350\277\216\344\275\277\347\224\250Chat", nullptr));
         pushButton->setText(QCoreApplication::translate("Register", "Go", nullptr));
         lineEdit->setPlaceholderText(QCoreApplication::translate("Register", "\347\224\250\346\210\267\345\220\215", nullptr));
         lineEdit_2->setPlaceholderText(QCoreApplication::translate("Register", "\345\257\206\347\240\201", nullptr));
