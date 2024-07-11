@@ -10,6 +10,9 @@
 #include<QJsonObject>
 #include<QJsonDocument>
 
+// QString ip = "127.0.0.1";
+extern QString myName;
+
 namespace Ui {
 class Register;
 }

@@ -1,13 +1,19 @@
 #include "register.h"
 #include "ui_register.h"
 
-QString url = "http://127.0.0.1:8080";
+QString url = "http://116.198.241.238:8080";
+QString myName = "ppch";
 
 Register::Register(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::Register)
 {
     ui->setupUi(this);
+
+    QNetworkAccessManager *d = new QNetworkAccessManager(this);
+    QNetworkRequest request((QUrl(url)));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    d->head(request);
 
     r = new QNetworkAccessManager(this);
     connect(r, &QNetworkAccessManager::finished, this, [this](QNetworkReply* reply){
@@ -20,8 +26,9 @@ Register::Register(QWidget *parent)
                 QMessageBox::warning(this, "警告", "用户不存在");
                 break;
             case 200:
+                myName = ui->lineEdit->text();
                 accept();
-                // QMessageBox::warning(this, "成功", "注册成功现在你可以登录了");
+
                 break;
             }
             reply->deleteLater();
@@ -33,6 +40,8 @@ Register::Register(QWidget *parent)
 
 Register::~Register()
 {
+    r->deleteLater();
+    m->deleteLater();
     delete ui;
 }
 
