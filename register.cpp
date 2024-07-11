@@ -1,7 +1,7 @@
 #include "register.h"
 #include "ui_register.h"
 
-QString url = "http://116.198.241.238:8080";
+QString url = "http://127.0.0.1:8080";
 QString myName = "ppch";
 
 Register::Register(QWidget *parent)

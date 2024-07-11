@@ -30,7 +30,7 @@ MainWindow::MainWindow(const QString& myname, QWidget *parent)
         socket->write(jsonData);
     });//连接成功时触发
     // 假设已经连接到后端服务器
-    socket->connectToHost("116.198.241.238", 8081);
+    socket->connectToHost("127.0.0.1", 8081);
 
     // 创建初始的消息对象并加入 userObject
     QJsonObject messageObject;
@@ -151,7 +151,7 @@ void MainWindow::on_pushButton_4_clicked()
     QByteArray jsonData = ui->lineEdit->text().toUtf8();
 
     QNetworkAccessManager *mm = new QNetworkAccessManager(this);
-    QNetworkRequest request(QUrl("http://116.198.241.238:8080/inquire"));
+    QNetworkRequest request(QUrl("http://127.0.0.1:8080/inquire"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     connect(mm, &QNetworkAccessManager::finished, this, [this,  mm](QNetworkReply* reply){
